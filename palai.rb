@@ -17,11 +17,17 @@ def login(mechanize)
 end
 
 def claim_income(dashboard)
-  # income = dashboard.link_with(href: %r{/basic_incomes$}).click
+  income = dashboard.link_with(href: %r{/basic_incomes$}).click
 
-  # begin require 'awesome_print'; rescue LoadError; end
-  # require 'pry-byebug'
-  # binding.pry
+  claim = income.form_with(action: '/users/2898/basic_incomes',
+                           method: 'POST')
+
+  unless claim
+    warn('No income to claim')
+    return
+  end
+
+  claim.submit
 end
 
 def report_balance(mechanize, dashboard)
