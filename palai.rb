@@ -23,7 +23,7 @@ def claim_income(dashboard)
                            method: 'POST')
 
   unless claim
-    warn('No income to claim')
+    fail('No income to claim')
     return
   end
 
