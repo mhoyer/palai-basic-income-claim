@@ -19,7 +19,7 @@ end
 def claim_income(dashboard)
   income = dashboard.link_with(href: %r{/basic_incomes$}).click
 
-  claim = income.form_with(action: '/users/2898/basic_incomes',
+  claim = income.form_with(action: %r{/users/\d+/basic_incomes},
                            method: 'POST')
 
   unless claim
