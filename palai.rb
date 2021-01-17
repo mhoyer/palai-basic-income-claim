@@ -22,7 +22,10 @@ def claim_income(dashboard)
   claim = income.form_with(action: %r{/users/\d+/basic_incomes},
                            method: 'POST')
 
-  raise('No income to claim') unless claim
+  unless claim
+    $stderr.puts('No income to claim')
+    exit(1)
+  end
 
   claim.submit
 end
