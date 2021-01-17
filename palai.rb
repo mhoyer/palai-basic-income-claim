@@ -22,10 +22,7 @@ def claim_income(dashboard)
   claim = income.form_with(action: %r{/users/\d+/basic_incomes},
                            method: 'POST')
 
-  unless claim
-    fail('No income to claim')
-    return
-  end
+  raise('No income to claim') unless claim
 
   claim.submit
 end
@@ -33,9 +30,9 @@ end
 def report_balance(mechanize, dashboard)
   dashboard = mechanize.get(dashboard.uri)
 
-  balance = dashboard.at_css('div.stat .value').text.gsub(/[^\d\.]/, '')
+  balance = dashboard.at_css('div.stat .value').text.gsub(/[^\d.]/, '')
 
-  STDOUT.puts(balance)
+  $stdout.puts(balance)
   Rake::Funnel::Integration::TeamCity::ServiceMessages \
     .build_statistic_value(key: 'Balance', value: balance)
 end
