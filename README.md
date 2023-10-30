@@ -5,7 +5,21 @@ Claim your [Palai](https://palai.org/) basic income automatically.
 Reports your balance on stdout and as a TeamCity build statistic (only if you
 run TeamCity).
 
-## Usage
+## Usage with docker/podman
+
+Create `.env` file with palai credentials:
+
+```env
+PALAI_USER=
+PALAI_PASSWORD=
+```
+
+Run the container:
+```sh
+docker compose up --build --pull always
+```
+
+## Usage with `ruby``
 
 1. Install Ruby
 1. Install bundler: `gem install bundler`
