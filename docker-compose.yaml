@@ -1,0 +1,10 @@
+version: "2"
+services:
+  palai:
+    image: local/palai-basic-income-claim:latest
+    build: .
+    container_name: palai-basic-income-claim
+    env_file:
+      - .env
+        # PALAI_USER=
+        # PALAI_PASSWORD=
